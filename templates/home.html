@@ -1,0 +1,55 @@
+{% extends 'base.html' %}
+
+{% block contents %}
+<title>Home</title>
+
+
+<!-- tabel stars here-------- -->
+<table class="table" style="align-items: center; margin: auto; width: 70%; margin-top: 100px;">
+    <thead>
+      <tr>
+        <th scope="col">#</th>
+        <th scope="col">Musician Name</th>
+        <th scope="col">Email</th>
+        <th scope="col">Album Rating</th>
+        <th scope="col">Instrument Type</th>
+        <th scope="col">Album Name</th>
+        <th scope="col">Release Date</th>
+        <th scope="col">Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for data in combined_data %}
+      <tr>
+        <th scope="row">{{ forloop.counter }}</th>
+        <td><a href="{% url 'edit_musician' data.Musician_id  %}">{{data.Musician_Name}}</a></td>
+        <td>{{data.Email}}</td>
+        <td>{{data.Album_Rating}}</td>
+        <td>{{data.Instrument_Type}}</td>
+        <td>{{data.Album_Name}}</td>
+
+        <td>{{data.Release_Date}}</td>
+        
+        <td style="display: flex; gap: 5px;">
+          <a class="btn btn-primary" href="{% url 'edit_album' data.album_id  %}">Edit Album</a>
+          <a  class="btn btn-danger" href="{% url 'delete_musician' data.Musician_id  %}">Delete</a>
+        </td>
+      </tr>
+      {% endfor %}
+      
+    
+    </tbody>
+      
+      
+      
+    
+  </table>
+
+
+
+
+
+<!-- table ends here-------- -->
+    
+        
+{% endblock contents %}
